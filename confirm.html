@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Review and confirm your pet clinic booking."
+  >
+
+  <title>PawCare Clinic — Booking Confirmation</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="confirm.js" defer></script>
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <header class="site-header">
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="PawCare Clinic home"
+      >
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path d="M15.5 21.5c-3.4 0-6-3.2-6-6.8 0-2.8 1.6-5 3.8-5s4.7 3.1 4.7 6.2c0 3.2-.9 5.6-2.5 5.6Z"/>
+            <path d="M32.5 21.5c3.4 0 6-3.2 6-6.8 0-2.8-1.6-5-3.8-5S30 12.8 30 15.9c0 3.2.9 5.6 2.5 5.6Z"/>
+            <path d="M11.3 28.1c0-2.4 2-4.6 4.7-4.6 2.1 0 3.4 1.1 5 2.2 1 .7 2 .7 3 0 1.6-1.1 2.9-2.2 5-2.2 2.7 0 4.7 2.2 4.7 4.6 0 4.1-4.3 9.2-11.2 9.2s-11.2-5.1-11.2-9.2Z"/>
+          </svg>
+        </span>
+
+        <span>
+          <strong>PawCare</strong>
+          <small>Veterinary Clinic</small>
+        </span>
+      </a>
+
+      <span class="header-badge">Pet services</span>
+    </header>
+
+
+    <main class="page-content">
+
+      <div class="page-actions page-actions--top">
+        <a class="back-link" href="details.html">← Back to your details</a>
+      </div>
+
+      <section
+        class="intro"
+        aria-labelledby="page-title"
+      >
+        <div>
+          <p class="eyebrow">Step 4 of 4</p>
+
+          <h1 id="page-title">
+            Booking confirmed
+          </h1>
+
+          <p class="intro-copy" id="confirm-intro">
+            Here's a summary of your appointment.
+          </p>
+        </div>
+      </section>
+
+
+      <div
+        id="missing-data-notice"
+        class="form-error"
+        role="alert"
+        hidden
+      ></div>
+
+
+      <section
+        id="summary-card"
+        class="summary-card"
+        aria-label="Booking summary"
+      ></section>
+
+
+      <div class="page-actions">
+        <a class="back-link" href="details.html">← Edit your details</a>
+
+        <button
+          type="button"
+          id="start-over"
+          class="continue-button continue-button--ghost"
+        >
+          Start a new booking
+        </button>
+      </div>
+
+    </main>
+
+
+    <footer class="site-footer">
+      <span>
+        Friendly care for every wag, purr, and chirp.
+      </span>
+
+      <span>
+        Selection is stored locally in your browser.
+      </span>
+    </footer>
+
+  </div>
+</body>
+</html>

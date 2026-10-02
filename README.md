@@ -19,11 +19,26 @@ A responsive pet-clinic online booking front-end built with plain HTML, CSS, and
 - Past dates are disabled (`minDate` set to today); only today or future dates can be picked.
 - A row of time slot buttons (09:00, 10:00, 11:00, 13:00, 14:00, 15:00, 16:00) below the calendar.
 - Selecting a time slot highlights it (`aria-pressed`) and, once both a valid date and a time are chosen, both are saved automatically.
-- A "Confirm date & time" button validates the selection and shows an inline error banner (`role="alert"`) if the date or time is missing.
+- A "Continue to your details" button validates the selection, shows an inline error banner (`role="alert"`) if the date or time is missing, and otherwise saves the selection and moves to `details.html`.
 - Selected date is saved to `localStorage` under `pawcare.selectedDate` (ISO `YYYY-MM-DD`), and the time under `pawcare.selectedTimeSlot`.
 - The saved date & time are restored when the page is reopened.
 - Calendar and time slot buttons are fully keyboard accessible (tab between controls, Enter/Space to select, arrow keys inside the calendar).
 - Shows the previously selected service name at the top, with a link back to `index.html` if none was chosen yet.
+
+### Step 3 — Your details (`details.html`)
+- A single-column, labelled form collecting owner name, email, phone, pet name, and pet type.
+- Every field has native HTML5 validation attributes (`required`, `type="email"`, `type="tel"`, `pattern`, `minlength`/`maxlength`) as a baseline, layered with custom JavaScript validation for clearer messages.
+- **Live validation**: each field is checked on `input`/`blur`/`change`. Once a field has been visited, errors update as the user types; a red inline message appears under the field and the input is marked `aria-invalid="true"`.
+- Each field's error text is inside a `role="alert"` element (an ARIA live region), so screen readers announce new validation errors as they appear. A page-level `role="alert"` banner also summarizes failed submit attempts.
+- A persistent "← Back to date & time" link appears both above and below the form; going back does not lose the date/time already saved in `localStorage`.
+- On successful submit, all five fields are saved as one object to `localStorage` under `pawcare.customerDetails`, and the browser is redirected to `confirm.html`.
+- If the user returns to this page later (e.g. from the confirmation page to make an edit), previously saved details are automatically repopulated into the form fields.
+- Fully keyboard accessible: standard `<input>`/`<select>`/`<button>` elements, visible focus rings, and logical tab order (no custom widgets that would need extra keyboard handling).
+
+### Step 4 — Confirmation (`confirm.html`)
+- Reads the service, date, time, and customer details back out of `localStorage` and displays them as a read-only summary.
+- Shows a warning banner if any earlier step was skipped or is missing.
+- "Edit your details" returns to `details.html` (pre-filled); "Start a new booking" clears all saved booking data and returns to `index.html`.
 
 ## Project structure
 
@@ -31,9 +46,13 @@ A responsive pet-clinic online booking front-end built with plain HTML, CSS, and
 .
 ├── index.html
 ├── date.html
+├── details.html
+├── confirm.html
 ├── style.css
 ├── script.js
 ├── date.js
+├── details.js
+├── confirm.js
 └── README.md
 ```
 
@@ -59,8 +78,8 @@ Initialize the local repository:
 
 ```bash
 git init
-git add index.html date.html style.css script.js date.js README.md
-git commit -m "Build pet service selection and date/time picker screens"
+git add index.html date.html details.html confirm.html style.css script.js date.js details.js confirm.js README.md
+git commit -m "Build pet service, date/time, details, and confirmation screens"
 ```
 
 To publish it to a new GitHub repository, create an empty repository on GitHub and run:
@@ -76,6 +95,8 @@ git push -u origin main
 Sample services are defined as a JavaScript array in `script.js`. Add or remove objects there to change the grid without editing the HTML cards manually.
 
 Available time slots are defined as a JavaScript array (`TIME_SLOTS`) in `date.js`. Add or remove strings there to change the time options.
+
+Form validation rules for the details page live in the `FIELD_RULES` object in `details.js` — edit the regular expressions or messages there to change what counts as a valid name, email, or phone number.
 
 ## Dependencies
 

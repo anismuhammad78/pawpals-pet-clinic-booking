@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Enter your contact details and your pet's information to complete your booking."
+  >
+
+  <title>PawCare Clinic — Your Details</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="details.js" defer></script>
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <header class="site-header">
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="PawCare Clinic home"
+      >
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path d="M15.5 21.5c-3.4 0-6-3.2-6-6.8 0-2.8 1.6-5 3.8-5s4.7 3.1 4.7 6.2c0 3.2-.9 5.6-2.5 5.6Z"/>
+            <path d="M32.5 21.5c3.4 0 6-3.2 6-6.8 0-2.8-1.6-5-3.8-5S30 12.8 30 15.9c0 3.2.9 5.6 2.5 5.6Z"/>
+            <path d="M11.3 28.1c0-2.4 2-4.6 4.7-4.6 2.1 0 3.4 1.1 5 2.2 1 .7 2 .7 3 0 1.6-1.1 2.9-2.2 5-2.2 2.7 0 4.7 2.2 4.7 4.6 0 4.1-4.3 9.2-11.2 9.2s-11.2-5.1-11.2-9.2Z"/>
+          </svg>
+        </span>
+
+        <span>
+          <strong>PawCare</strong>
+          <small>Veterinary Clinic</small>
+        </span>
+      </a>
+
+      <span class="header-badge">Pet services</span>
+    </header>
+
+
+    <main class="page-content">
+
+      <div class="page-actions page-actions--top">
+        <a class="back-link" href="date.html">← Back to date & time</a>
+      </div>
+
+      <section
+        class="intro"
+        aria-labelledby="page-title"
+      >
+        <div>
+          <p class="eyebrow">Step 3 of 4</p>
+
+          <h1 id="page-title">
+            Your details
+          </h1>
+
+          <p class="intro-copy" id="booking-context">
+            Tell us who to contact and a little about your pet.
+            Your information is saved on this device.
+          </p>
+        </div>
+      </section>
+
+
+      <div
+        id="form-error"
+        class="form-error"
+        role="alert"
+        hidden
+      ></div>
+
+
+      <form
+        id="details-form"
+        class="detail-form"
+        novalidate
+      >
+
+        <div class="form-field">
+          <label for="owner-name">
+            Owner name
+            <span class="required-mark" aria-hidden="true">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="owner-name"
+            name="ownerName"
+            autocomplete="name"
+            required
+            minlength="2"
+            maxlength="60"
+            pattern="^[A-Za-z\s'.-]{2,60}$"
+            aria-describedby="owner-name-error"
+            aria-invalid="false"
+          >
+
+          <p
+            id="owner-name-error"
+            class="field-error"
+            role="alert"
+          ></p>
+        </div>
+
+
+        <div class="form-field">
+          <label for="owner-email">
+            Email address
+            <span class="required-mark" aria-hidden="true">*</span>
+          </label>
+
+          <input
+            type="email"
+            id="owner-email"
+            name="ownerEmail"
+            autocomplete="email"
+            required
+            aria-describedby="owner-email-error"
+            aria-invalid="false"
+          >
+
+          <p
+            id="owner-email-error"
+            class="field-error"
+            role="alert"
+          ></p>
+        </div>
+
+
+        <div class="form-field">
+          <label for="owner-phone">
+            Phone number
+            <span class="required-mark" aria-hidden="true">*</span>
+          </label>
+
+          <input
+            type="tel"
+            id="owner-phone"
+            name="ownerPhone"
+            autocomplete="tel"
+            required
+            pattern="^[0-9+()\-\s]{7,20}$"
+            placeholder="e.g. +1 555 123 4567"
+            aria-describedby="owner-phone-error"
+            aria-invalid="false"
+          >
+
+          <p
+            id="owner-phone-error"
+            class="field-error"
+            role="alert"
+          ></p>
+        </div>
+
+
+        <div class="form-field">
+          <label for="pet-name">
+            Pet name
+            <span class="required-mark" aria-hidden="true">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="pet-name"
+            name="petName"
+            autocomplete="off"
+            required
+            minlength="1"
+            maxlength="40"
+            aria-describedby="pet-name-error"
+            aria-invalid="false"
+          >
+
+          <p
+            id="pet-name-error"
+            class="field-error"
+            role="alert"
+          ></p>
+        </div>
+
+
+        <div class="form-field">
+          <label for="pet-type">
+            Pet type
+            <span class="required-mark" aria-hidden="true">*</span>
+          </label>
+
+          <select
+            id="pet-type"
+            name="petType"
+            required
+            aria-describedby="pet-type-error"
+            aria-invalid="false"
+          >
+            <option value="" selected disabled>Select a pet type</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="bird">Bird</option>
+            <option value="rabbit">Rabbit</option>
+            <option value="other">Other</option>
+          </select>
+
+          <p
+            id="pet-type-error"
+            class="field-error"
+            role="alert"
+          ></p>
+        </div>
+
+
+        <div class="page-actions">
+          <a class="back-link" href="date.html">← Back to date & time</a>
+
+          <button
+            type="submit"
+            class="continue-button"
+          >
+            Continue to confirmation →
+          </button>
+        </div>
+
+      </form>
+
+    </main>
+
+
+    <footer class="site-footer">
+      <span>
+        Friendly care for every wag, purr, and chirp.
+      </span>
+
+      <span>
+        Selection is stored locally in your browser.
+      </span>
+    </footer>
+
+  </div>
+</body>
+</html>

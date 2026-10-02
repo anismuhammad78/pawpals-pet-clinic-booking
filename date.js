@@ -286,7 +286,10 @@ function handleConfirm() {
     showError(
       "Your selection is confirmed, but local saving is unavailable in this browser."
     );
+    return;
   }
+
+  window.location.href = "details.html";
 }
 
 
