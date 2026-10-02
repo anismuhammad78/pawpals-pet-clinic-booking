@@ -54,6 +54,7 @@ const STORAGE_KEY = "pawcare.selectedServiceId";
 const grid = document.querySelector("#service-grid");
 const selectionNote = document.querySelector(".selection-note");
 const selectionStatus = document.querySelector("#selection-status");
+const continueLink = document.querySelector("#continue-to-date");
 
 
 function getSavedServiceId() {
@@ -189,6 +190,18 @@ function updateSelection(serviceId) {
     selectionStatus.textContent =
       "No service selected";
   }
+
+
+  if (continueLink) {
+
+    if (selectedService) {
+      continueLink.classList.remove("is-disabled");
+      continueLink.removeAttribute("aria-disabled");
+    } else {
+      continueLink.classList.add("is-disabled");
+      continueLink.setAttribute("aria-disabled", "true");
+    }
+  }
 }
 
 
@@ -282,3 +295,12 @@ renderServices();
 updateSelection(
   getSavedServiceId()
 );
+
+
+if (continueLink) {
+  continueLink.addEventListener("click", (event) => {
+    if (continueLink.classList.contains("is-disabled")) {
+      event.preventDefault();
+    }
+  });
+}

@@ -15,6 +15,10 @@
   --shadow: 0 12px 30px rgba(32, 56, 91, 0.08);
 
   --focus: 0 0 0 4px rgba(43, 111, 242, 0.18);
+
+  --danger: #d6433c;
+  --danger-soft: #fdecea;
+  --danger-border: rgba(214, 67, 60, 0.3);
 }
 
 
@@ -545,6 +549,367 @@ h1 {
 
   .site-footer {
     flex-direction: column;
+  }
+}
+
+
+/* ============================================================
+   PAGE ACTIONS / CONTINUE BUTTON
+   Shared between index.html (link to date.html) and date.html
+   (button that validates + saves the date & time selection).
+   ============================================================ */
+
+.page-actions {
+  margin-top: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+}
+
+
+.continue-button {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-left: auto;
+  padding: 13px 22px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: var(--blue);
+  color: #fff;
+
+  font-size: 0.92rem;
+  font-weight: 800;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  box-shadow: 0 10px 24px rgba(43, 111, 242, 0.25);
+
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease,
+    opacity 160ms ease;
+}
+
+
+.continue-button:hover {
+  transform: translateY(-2px);
+
+  background: var(--blue-dark);
+
+  box-shadow: 0 14px 28px rgba(43, 111, 242, 0.3);
+}
+
+
+.continue-button:focus-visible {
+  outline: none;
+
+  box-shadow:
+    var(--focus),
+    0 10px 24px rgba(43, 111, 242, 0.25);
+}
+
+
+.continue-button.is-disabled {
+  pointer-events: none;
+
+  cursor: not-allowed;
+
+  background: #b9c3d6;
+
+  box-shadow: none;
+}
+
+
+.back-link {
+  color: var(--text-muted);
+
+  font-size: 0.86rem;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+
+.back-link:hover {
+  color: var(--blue-dark);
+
+  text-decoration: underline;
+}
+
+
+.back-link:focus-visible {
+  outline: none;
+
+  box-shadow: var(--focus);
+
+  border-radius: 6px;
+}
+
+
+/* ============================================================
+   DATE & TIME PICKER PAGE
+   ============================================================ */
+
+.form-error {
+  margin-bottom: 22px;
+  padding: 13px 16px;
+
+  border: 1px solid var(--danger-border);
+  border-radius: 14px;
+
+  background: var(--danger-soft);
+  color: var(--danger);
+
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+
+.picker-layout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  gap: 20px;
+
+  align-items: start;
+}
+
+
+.picker-panel {
+  padding: 22px;
+
+  border: 2px solid var(--border);
+  border-radius: 20px;
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow);
+}
+
+
+.panel-title {
+  margin: 0 0 16px;
+
+  font-size: 1rem;
+
+  letter-spacing: -0.01em;
+}
+
+
+.calendar-host {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* Pikaday theme overrides to match the PawCare palette */
+
+.pika-single {
+  border: none;
+  box-shadow: none;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  width: 100%;
+}
+
+
+.pika-lendar {
+  width: 100%;
+
+  float: none;
+}
+
+
+.pika-title {
+  margin-bottom: 6px;
+}
+
+
+.pika-title select {
+  font-family: inherit;
+}
+
+
+.pika-label {
+  background: var(--surface);
+
+  font-weight: 800;
+}
+
+
+.pika-prev,
+.pika-next {
+  border-radius: 10px;
+
+  opacity: 0.8;
+}
+
+
+.pika-prev:hover,
+.pika-next:hover {
+  background: var(--blue-soft);
+
+  opacity: 1;
+}
+
+
+.pika-table th {
+  color: var(--text-muted);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.03em;
+}
+
+
+.pika-button {
+  border-radius: 10px;
+
+  background: transparent;
+  color: var(--text);
+
+  font-family: inherit;
+  font-weight: 600;
+
+  text-align: center;
+
+  box-shadow: none;
+}
+
+
+.pika-button:hover {
+  background: var(--blue-soft) !important;
+  color: var(--blue-dark) !important;
+
+  box-shadow: none !important;
+
+  border-radius: 10px;
+}
+
+
+.pika-table td.is-today .pika-button {
+  color: var(--blue);
+  font-weight: 800;
+}
+
+
+.pika-table td.is-selected .pika-button {
+  background: var(--blue) !important;
+  color: #fff !important;
+
+  box-shadow: 0 6px 14px rgba(43, 111, 242, 0.3) !important;
+}
+
+
+.pika-table td.is-disabled .pika-button {
+  color: #c3cbdb;
+
+  cursor: not-allowed;
+}
+
+
+.pika-table td.is-outside-current-month .pika-button {
+  color: #d7deea;
+}
+
+
+.time-slot-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+
+.time-slot {
+  padding: 12px 18px;
+
+  border: 2px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--surface-muted);
+  color: var(--text);
+
+  font-size: 0.92rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease,
+    color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+
+.time-slot:hover {
+  transform: translateY(-2px);
+
+  border-color: #b9cbe5;
+}
+
+
+.time-slot:focus-visible {
+  outline: none;
+
+  box-shadow: var(--focus);
+}
+
+
+.time-slot.is-selected {
+  border-color: var(--blue);
+
+  background: var(--blue);
+  color: #fff;
+
+  box-shadow: 0 10px 20px rgba(43, 111, 242, 0.25);
+}
+
+
+.time-slot.is-disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+@media (max-width: 760px) {
+
+  .picker-layout {
+    grid-template-columns: 1fr;
+  }
+
+
+  .page-actions {
+    flex-direction: column-reverse;
+
+    align-items: stretch;
+  }
+
+
+  .continue-button {
+    margin-left: 0;
+
+    justify-content: center;
   }
 }
 

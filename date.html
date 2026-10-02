@@ -5,13 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta
     name="description"
-    content="Choose a pet clinic service and save your selection."
+    content="Pick an appointment date and time slot for your pet's visit."
   >
 
-  <title>PawCare Clinic — Services</title>
+  <title>PawCare Clinic — Pick a Date & Time</title>
 
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css"
+  >
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"
+    defer
+  ></script>
+  <script src="date.js" defer></script>
 </head>
 
 <body>
@@ -48,51 +57,87 @@
         aria-labelledby="page-title"
       >
         <div>
-          <p class="eyebrow">Your pet, looked after</p>
+          <p class="eyebrow">Step 2 of 3</p>
 
           <h1 id="page-title">
-            Choose a service
+            Pick a date & time
           </h1>
 
-          <p class="intro-copy">
-            Select a clinic service to continue.
-            Your choice is saved on this device.
+          <p class="intro-copy" id="service-context">
+            Choose an appointment date and an available time slot.
+            Your selection is saved on this device.
           </p>
         </div>
 
         <div
           class="selection-note"
           aria-live="polite"
+          id="datetime-note"
         >
           <span
             class="selection-dot"
             aria-hidden="true"
           ></span>
 
-          <span id="selection-status">
-            No service selected
+          <span id="datetime-status">
+            No date or time selected
           </span>
         </div>
       </section>
 
 
+      <div
+        id="form-error"
+        class="form-error"
+        role="alert"
+        hidden
+      ></div>
+
+
       <section
-        id="service-grid"
-        class="service-grid"
-        role="grid"
-        aria-label="Available pet services"
-      ></section>
+        class="picker-layout"
+        aria-label="Appointment date and time picker"
+      >
+
+        <div class="picker-panel">
+          <h2 class="panel-title">Choose a date</h2>
+
+          <div
+            id="calendar"
+            class="calendar-host"
+          ></div>
+
+          <input
+            type="hidden"
+            id="date-field"
+            aria-hidden="true"
+          >
+        </div>
+
+        <div class="picker-panel">
+          <h2 class="panel-title">Choose a time</h2>
+
+          <div
+            id="time-slots"
+            class="time-slot-grid"
+            role="group"
+            aria-label="Available time slots"
+          ></div>
+        </div>
+
+      </section>
 
 
       <div class="page-actions">
-        <a
-          id="continue-to-date"
-          class="continue-button is-disabled"
-          href="date.html"
-          aria-disabled="true"
+        <a class="back-link" href="index.html">← Back to services</a>
+
+        <button
+          type="button"
+          id="confirm-selection"
+          class="continue-button"
         >
-          Continue to date & time →
-        </a>
+          Confirm date & time
+        </button>
       </div>
 
     </main>
