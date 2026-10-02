@@ -22,6 +22,73 @@
 }
 
 
+/* ============================================================
+   DARK MODE
+   Every component in this file is built on the custom properties
+   above, so overriding them for [data-theme="dark"] re-themes the
+   whole site without touching individual component rules. The
+   theme attribute is set on <html> by theme.js (and, before that,
+   by a tiny inline script in <head> on each page, to avoid a
+   flash of the light theme while the page loads).
+   ============================================================ */
+
+:root[data-theme="dark"] {
+  --page: #0e1424;
+  --surface: #171f34;
+  --surface-muted: #1c2640;
+
+  --text: #edf1fb;
+  --text-muted: #9aa5c4;
+
+  --border: #2b3656;
+
+  --blue: #5b8dff;
+  --blue-dark: #89acff;
+  --blue-soft: #1e2a4d;
+
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+
+  --focus: 0 0 0 4px rgba(91, 141, 255, 0.35);
+
+  --danger: #ff7a73;
+  --danger-soft: #3a2026;
+  --danger-border: rgba(255, 122, 115, 0.35);
+}
+
+
+:root[data-theme="dark"] .selection-dot {
+  background: #4b578a;
+}
+
+
+:root[data-theme="dark"] .form-field input::placeholder {
+  color: #6b7696;
+}
+
+
+:root[data-theme="dark"] .continue-button.is-disabled {
+  background: #3a4566;
+  color: #8993b5;
+}
+
+
+:root[data-theme="dark"] .pika-table td.is-disabled .pika-button {
+  color: #4b5678;
+}
+
+
+:root[data-theme="dark"] .pika-table td.is-outside-current-month .pika-button {
+  color: #39456a;
+}
+
+
+body {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+
 * {
   box-sizing: border-box;
 }
@@ -142,6 +209,14 @@ button {
 }
 
 
+.header-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+
 .header-badge {
   padding: 8px 12px;
 
@@ -154,6 +229,74 @@ button {
 
   font-size: 0.76rem;
   font-weight: 700;
+}
+
+
+:root[data-theme="dark"] .header-badge {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  background: var(--surface);
+  color: var(--text);
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 16px rgba(32, 56, 91, 0.06);
+
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+
+.theme-toggle:hover {
+  background: var(--blue-soft);
+
+  border-color: #b9cbe5;
+}
+
+
+.theme-toggle:focus-visible {
+  outline: none;
+
+  box-shadow: var(--focus);
+}
+
+
+.theme-toggle svg {
+  width: 19px;
+  height: 19px;
+
+  fill: currentColor;
+}
+
+
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: block;
 }
 
 
@@ -1007,8 +1150,8 @@ h1 {
    ============================================================ */
 
 .summary-card {
-  max-width: 560px;
-  padding: 8px 22px;
+  max-width: 620px;
+  padding: 6px 24px;
 
   border: 2px solid var(--border);
   border-radius: 20px;
@@ -1019,6 +1162,78 @@ h1 {
 }
 
 
+.summary-section {
+  padding: 20px 0;
+}
+
+
+.summary-section + .summary-section {
+  border-top: 1px solid var(--border);
+}
+
+
+.summary-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 10px;
+}
+
+
+.summary-section-header h2 {
+  margin: 0;
+
+  font-size: 0.95rem;
+
+  letter-spacing: -0.01em;
+}
+
+
+.edit-link {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 6px 10px;
+
+  border-radius: 10px;
+
+  color: var(--blue-dark);
+  text-decoration: none;
+
+  font-size: 0.78rem;
+  font-weight: 800;
+
+  transition: background 140ms ease;
+}
+
+
+.edit-link svg {
+  width: 14px;
+  height: 14px;
+
+  fill: currentColor;
+}
+
+
+.edit-link:hover {
+  background: var(--blue-soft);
+
+  text-decoration: underline;
+}
+
+
+.edit-link:focus-visible {
+  outline: none;
+
+  box-shadow: var(--focus);
+}
+
+
 .summary-row {
   display: flex;
   align-items: baseline;
@@ -1026,12 +1241,7 @@ h1 {
 
   gap: 16px;
 
-  padding: 15px 0;
-}
-
-
-.summary-row + .summary-row {
-  border-top: 1px solid var(--border);
+  padding: 6px 0;
 }
 
 
@@ -1050,6 +1260,15 @@ h1 {
   font-weight: 800;
 
   text-align: right;
+}
+
+
+.summary-value.is-muted {
+  color: var(--text-muted);
+
+  font-weight: 600;
+
+  font-style: italic;
 }
 
 

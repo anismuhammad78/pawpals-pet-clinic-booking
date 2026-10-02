@@ -2,6 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("pawcare.theme");
+        if (stored === "dark" || stored === "light") {
+          document.documentElement.setAttribute("data-theme", stored);
+        } else if (
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta
     name="description"
@@ -11,6 +28,7 @@
   <title>PawCare Clinic — Your Details</title>
 
   <link rel="stylesheet" href="style.css">
+  <script src="theme.js" defer></script>
   <script src="details.js" defer></script>
 </head>
 
@@ -37,7 +55,25 @@
         </span>
       </a>
 
-      <span class="header-badge">Pet services</span>
+      <div class="header-actions">
+        <span class="header-badge">Pet services</span>
+
+        <button
+          type="button"
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4a1 1 0 0 1 1-1V2a1 1 0 1 0-2 0v1a1 1 0 0 1 1 1Zm0 16a1 1 0 0 0-1 1v1a1 1 0 1 0 2 0v-1a1 1 0 0 0-1-1Zm10-8a1 1 0 0 0-1-1h-1a1 1 0 1 0 0 2h1a1 1 0 0 0 1-1ZM4 12a1 1 0 0 0-1-1H2a1 1 0 1 0 0 2h1a1 1 0 0 0 1-1Zm14.95-7.364a1 1 0 0 0-1.414 0l-.707.707a1 1 0 1 0 1.414 1.414l.707-.707a1 1 0 0 0 0-1.414ZM6.465 17.95a1 1 0 0 0-1.414 0l-.707.707a1 1 0 1 0 1.414 1.414l.707-.707a1 1 0 0 0 0-1.414Zm12.485 1.707-.707-.707a1 1 0 1 0-1.414 1.414l.707.707a1 1 0 0 0 1.414-1.414ZM6.465 6.05 5.757 5.343a1 1 0 1 0-1.414 1.414l.707.707A1 1 0 1 0 6.465 6.05ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"/>
+          </svg>
+
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21.64 13a9 9 0 1 1-10.63-10.63 1 1 0 0 1 1.11 1.4A7 7 0 1 0 20.24 11.9a1 1 0 0 1 1.4 1.1Z"/>
+          </svg>
+        </button>
+      </div>
     </header>
 
 
