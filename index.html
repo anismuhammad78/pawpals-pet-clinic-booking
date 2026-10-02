@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Choose a pet clinic service and save your selection."
+  >
+
+  <title>PawCare Clinic — Services</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <header class="site-header">
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="PawCare Clinic home"
+      >
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path d="M15.5 21.5c-3.4 0-6-3.2-6-6.8 0-2.8 1.6-5 3.8-5s4.7 3.1 4.7 6.2c0 3.2-.9 5.6-2.5 5.6Z"/>
+            <path d="M32.5 21.5c3.4 0 6-3.2 6-6.8 0-2.8-1.6-5-3.8-5S30 12.8 30 15.9c0 3.2.9 5.6 2.5 5.6Z"/>
+            <path d="M11.3 28.1c0-2.4 2-4.6 4.7-4.6 2.1 0 3.4 1.1 5 2.2 1 .7 2 .7 3 0 1.6-1.1 2.9-2.2 5-2.2 2.7 0 4.7 2.2 4.7 4.6 0 4.1-4.3 9.2-11.2 9.2s-11.2-5.1-11.2-9.2Z"/>
+          </svg>
+        </span>
+
+        <span>
+          <strong>PawCare</strong>
+          <small>Veterinary Clinic</small>
+        </span>
+      </a>
+
+      <span class="header-badge">Pet services</span>
+    </header>
+
+
+    <main class="page-content">
+
+      <section
+        class="intro"
+        aria-labelledby="page-title"
+      >
+        <div>
+          <p class="eyebrow">Your pet, looked after</p>
+
+          <h1 id="page-title">
+            Choose a service
+          </h1>
+
+          <p class="intro-copy">
+            Select a clinic service to continue.
+            Your choice is saved on this device.
+          </p>
+        </div>
+
+        <div
+          class="selection-note"
+          aria-live="polite"
+        >
+          <span
+            class="selection-dot"
+            aria-hidden="true"
+          ></span>
+
+          <span id="selection-status">
+            No service selected
+          </span>
+        </div>
+      </section>
+
+
+      <section
+        id="service-grid"
+        class="service-grid"
+        role="grid"
+        aria-label="Available pet services"
+      ></section>
+
+    </main>
+
+
+    <footer class="site-footer">
+      <span>
+        Friendly care for every wag, purr, and chirp.
+      </span>
+
+      <span>
+        Selection is stored locally in your browser.
+      </span>
+    </footer>
+
+  </div>
+</body>
+</html>
